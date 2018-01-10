@@ -1,7 +1,7 @@
 Package: brant
 Type: Package
 Title: Test for Parallel Regression Assumption
-Version: 0.1-5
+Version: 0.2-0
 Date: 2018-01-10
 Author: Benjamin Schlegel [aut,cre], Marco Steenbergen [aut]
 Maintainer: Benjamin Schlegel <kontakt@benjaminschlegel.ch>
