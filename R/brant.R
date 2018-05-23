@@ -134,5 +134,5 @@ brant <- function(model,by.var=F){
   if(count0!=0){
     warning(paste0(count0," combinations in table(dv,ivs) do not occur. Because of that, the test results might be invalid."))
   }
-  result.matrix
+  invisible(result.matrix)
 }
