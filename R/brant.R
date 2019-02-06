@@ -1,11 +1,28 @@
 brant <- function(model,by.var=F){
-  temp.data = model$model
   y_name = as.character(formula(model))[2]
   x_names = as.character(formula(model))[3]
+  x.variables = strsplit(x_names," [\\+\\*:] ")[[1]]
+  temp.data = model$model
+  temp.dataframe = eval(model$call$data)
+  if(!is.null(temp.dataframe)){
+    selected.vars = c()
+    for(cn in colnames(temp.dataframe)){
+      if(sum(grep(cn,x.variables)) > 0){
+        selected.vars = c(selected.vars, cn)
+      }
+    }
+    temp.dataframe = cbind.data.frame(stats::na.omit(temp.dataframe[,selected.vars]),1)
+    temp.dataframe = temp.dataframe[,-which(colnames(temp.dataframe) %in% colnames(temp.data))]
+    if(!is.null(temp.dataframe)){
+      temp.data = cbind.data.frame(temp.data, temp.dataframe)
+    }
+  }
+  
+
   y = as.numeric(temp.data[[y_name]])
   temp.data$y = y
   
-  x.variables = strsplit(x_names," \\+ ")[[1]]
+  
   x.factors = c()
   for(name in x.variables){
     if(!is.numeric(temp.data[,name])){
