@@ -1,6 +1,7 @@
 brant <- function(model,by.var=F){
   y_name = as.character(formula(model))[2]
   x_names = as.character(formula(model))[3]
+  x_names = gsub("\n    ", "", x_names)
   x.variables = strsplit(x_names," [\\+\\*:] ")[[1]]
   temp.data = model$model
   temp.dataframe = eval(model$call$data)
