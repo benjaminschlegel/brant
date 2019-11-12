@@ -129,7 +129,7 @@ brant <- function(model,by.var=F){
     }
   }
   
-  result.matrix = brant:::print.testresult(model,X2,df.v,by.var)
+  result.matrix = print.testresult(model,X2,df.v,by.var)
   if(count0!=0){
     warning(paste0(count0," combinations in table(dv,ivs) do not occur. Because of that, the test results might be invalid."))
   }
