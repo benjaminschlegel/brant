@@ -10,7 +10,7 @@ The function calculates the brant test for  ordinal logit models to test the par
 \usage{
 brant(model,by.var=F)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{model}{
 the polr-Object generated with polr()
