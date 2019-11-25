@@ -11,9 +11,11 @@ brant <- function(model,by.var=F){
   x <- x[, -xint, drop = FALSE]
   y <- as.numeric(model.response(m_model))
   x.variables = names(m_model)[-1]
-  
   temp.data = data.frame(m_model, y)
-  
+  if(grepl(":",paste0(colnames(x), collapse = "")) & by.var){
+    by.var = FALSE
+    warning("by.var = TRUE currently not supported for interactions, setting by.var to FALSE")
+  }
   
   x.factors = c()
   for (name in x.variables) {
