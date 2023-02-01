@@ -19,7 +19,7 @@ brant <- function(model,by.var=F){
   
   x.factors = c()
   for (name in x.variables) {
-    if (!is.numeric(m_model[, name])) {
+    if (!is.numeric(m_model[, name]) & !is.logical(m_model[, name])) {
       x.factors = c(x.factors, name)
     }
   }

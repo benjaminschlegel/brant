@@ -1,6 +1,6 @@
 getCombiCoefs <- function(model){
   classes = attr(model$terms,"dataClasses")
-  factors = ifelse(classes[2:length(classes)]!="numeric",T,F)
+  factors = !(classes[2:length(classes)] %in% c("numeric", "logical"))
   f = i = var = 1
   result = data.frame(i=1:length(coef(model)),var=NA)
   for(factor in factors){
