@@ -7,18 +7,16 @@ print.testresult <- function(model,X2,df.v,by.var) {
   }
   # longest name
   longest.char = max(nchar(var.names))
-  n.tabs = ceiling(longest.char/8)
-  n.tabs = ifelse(n.tabs<2,2,n.tabs)
-  cat(paste0(rep("-",28+8*n.tabs+8),collapse = ""),"\n")
-  cat(paste0("Test for",paste0(rep(" ", longest.char-8), collapse = ""), paste0(rep("\t",n.tabs-1),collapse = ""),"X2\tdf\tprobability"),"\n")
-  cat(paste0(rep("-",28+8*n.tabs+8),collapse = ""),"\n")
-  cat(paste0("Omnibus",paste0(rep(" ", longest.char-7), collapse = ""),paste0(rep("\t",n.tabs-1),collapse = ""),round(X2[1],digits=2),"\t",df.v[1],"\t",round(p.values[1],digits=2)))
+  cat(paste0(rep("-",28+longest.char+2),collapse = ""),"\n")
+  cat(paste0("Test for",paste0(rep(" ", longest.char-6), collapse = ""), "X2\tdf\tprobability"),"\n")
+  cat(paste0(rep("-",28+longest.char+2),collapse = ""),"\n")
+  cat(paste0("Omnibus",paste0(rep(" ", longest.char-5), collapse = ""), round(X2[1],digits=2),"\t",df.v[1],"\t",round(p.values[1],digits=2)))
   cat("\n")
   for(i in 1:length(var.names)){
     name = var.names[i]
-    cat(paste0(name,paste0(rep(" ", longest.char-nchar(name)), collapse = ""), paste0(rep("\t",n.tabs-1),collapse = ""),round(X2[i+1],digits=2),"\t",df.v[i+1],"\t",round(p.values[i+1],digits=2),"\n"))
+    cat(paste0(name,paste0(rep(" ", longest.char-nchar(name)+2), collapse = ""), round(X2[i+1],digits=2),"\t",df.v[i+1],"\t",round(p.values[i+1],digits=2),"\n"))
   }
-  cat(paste0(rep("-",28+8*n.tabs+8),collapse = ""),"\n\n")
+  cat(paste0(rep("-",28+longest.char+2),collapse = ""),"\n\n")
   cat("H0: Parallel Regression Assumption holds\n")
   result.matrix = matrix(c(X2, df.v, p.values), ncol = 3)
   rownames(result.matrix) = c("Omnibus", var.names)
